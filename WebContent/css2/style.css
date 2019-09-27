@@ -1,0 +1,112 @@
+html {
+    font-size: 10px;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+    padding:0;
+    margin:0 auto;
+    background-color: #e9f3ff;
+}
+p {
+    margin: 0;
+}
+body * {
+    box-sizing: border-box;
+}
+.container {
+    width: 90%;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+header {
+    padding: 20px 0;
+    background-color: #273272;
+}
+.logo a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 26px;
+    text-transform: capitalize;
+}
+main {
+    min-height: calc(100vh - 108px);
+    position: relative;
+}
+.form_outer {
+    width: 480px;
+    background-color: #fff;
+    margin: 0px auto;
+    max-width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
+    /*position: relative;
+    top: 50px;*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.tab_controls:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+.tab_button {
+    display: block;
+    border: 0px solid transparent;
+    background-color: #e4e4e4;
+    font-size: 1.6rem;
+    text-align: center;
+    width: 50%;
+    line-height: 3;
+    float: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+}
+.tab_button.active {
+    background-color: #273272;
+    color: #fff;
+}
+.tab_contents {
+    padding: 40px 24px;
+    /*min-height: 240px;*/
+    display: none;
+}
+.tab_contents.active {
+    display: block;
+}
+.dropzone, .dropzone1 {
+    width: 100%;
+    margin: 0 auto;
+    height: 140px;
+    border-radius: 10px;
+    padding: 5px;
+    border: 1px dashed #767676;
+}
+.dropzone:hover, .dropzone1:hover {border-color: #273272;}
+.dropzone input[type="file"], .dropzone1 input[type="file"] {
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+}
+.dropzone .dz-message, .dropzone1 .dz-message {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 55px;
+    color: #767676;
+}
+.dropzone:hover .dz-message, .dropzone1:hover .dz-message {color: #273272;}
+footer {
+    background-color: #404040;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+footer p {
+    font-size: 1.3rem;
+}

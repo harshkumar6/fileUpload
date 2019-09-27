@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert Data Upto Specific Date</title>
+</head>
+<body>
+<form action="insertData" method="post">
+Type:- <select name="type" required="required">
+  <option value="90days">90 Day's Rolling</option>
+  <option value="30days">MTD AutoFail</option>
+</select>
+Start Date:- <input type="date" name="fromDate" required="required"><br>
+End Date:- <input type="date" name="toDate" required="required"><br>
+<input type="submit" value="Submit">
+</form>
+</body>
+</html>

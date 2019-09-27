@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Index Page</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/dropzone.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class="container">
+                    <div class="logo"><a href="javascript:void(0)">Mattsen Kumar</a></div>
+                </div>
+            </header>
+            <main>
+                <div class="container">
+                	<div id="errorMessage"></div>
+                	<div id="Message"></div>
+                    <div class="form_outer">
+                        <div class="tab_controls">
+                            <button class="tab_button active" data-tab="content_1">Dfr</button>
+                            <button class="tab_button" data-tab="content_2">Feeds</button>
+                        </div>
+                        <div class="tab_body">
+                            <div data-content="content_1" class="tab_contents active">
+                                <form id="dropzone1" action="uploadDFR" class="dropzone" method="post" enctype="multipart/form-data">
+                                    <input type="file" name="file" accept=".csv" />
+                                </form>
+                            </div>
+                            <div data-content="content_2" class="tab_contents">
+                                <form id="dropzone2" action="uploadFEED" class="dropzone" method="post" enctype="multipart/form-data">
+                                    <input type="file" name="file" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer>
+                <div class="container">
+                    <p>2019 &copy; All Rights Reserved by MattsenKumar LLC</p>
+                </div>
+            </footer>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
+        <script src="js/dropzone.js"></script>
+        <script>
+            $(document).ready(function(){
+                $(".tab_button").on("click", function(){
+                    var id_val = $(this).attr("data-tab");
+                    if(!$(this).hasClass("active")){
+                        $(this).addClass("active").siblings(".tab_button").removeClass("active");
+                        $("div[data-content='"+ id_val +"']").addClass("active").siblings(".tab_contents").removeClass("active");
+                    }
+                })
+               
+                setTimeout(function() {
+                    $('#errorMessage').fadeOut('fast');
+                    $('#Message').fadeOut('fast');
+                }, 50000);
+            })
+            Dropzone.autoDiscover = false;
+            $("#dropzone1").dropzone({
+                url: "uploadDFR",
+                paramName: "file",
+             
+                maxFilesize: 0,
+                maxFiles: 1,
+                init: function() {
+                    this.on("maxfilesexceeded", function(file) {
+                            this.removeAllFiles();
+                            this.addFile(file);
+                    });
+                },  
+                parallelUploads: 1,
+                acceptedFiles: ".csv"
+              
+            });
+            $("#dropzone2").dropzone({
+                url: "uploadFEED",
+                paramName: "file",
+              
+                maxFilesize: 0,
+                maxFiles: 1,
+                /*init: function() {
+                    this.on("maxfilesexceeded", function(file) {
+                            this.removeAllFiles();
+                            this.addFile(file);
+                    });
+                },  */
+                init: function() {
+                    this.on('addedfile', function(file) {
+                        if (this.files.length > 1) {
+                        this.removeFile(this.files[0]);
+                        }
+                    });
+                    //this.hiddenFileInput.removeAttribute('multiple');
+                },
+                parallelUploads: 1,
+                acceptedFiles: ".csv"
+            });
+            //$("div#my-awesome-dropzone").dropzone({ url: "/file/post" });
+            //https://github.com/enyo/dropzone/issues/1464
+            //http://www.mysqltutorial.org/basic-mysql-tutorial.aspx
+            
+        </script>
+    </body>
+</html>
